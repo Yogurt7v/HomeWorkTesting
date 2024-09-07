@@ -7,7 +7,7 @@ const userEvent = uE.setup({
     advanceTimers: jest.advanceTimersByTime
 })
 describe('Список задач', () => {
-    it.skip('Добавление и отображение задач и проверка отображения кнопки фильтрации', async () => {
+    it('Добавление и отображение задач и проверка отображения кнопки фильтрации', async () => {
         render(<App />, {
             wrapper: JestStoreProvider
         })
