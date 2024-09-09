@@ -3,7 +3,7 @@ import { Input } from 'src/components/Input';
 import { NewTaskBar } from 'src/modules/NewTaskBar';
 import uE from '@testing-library/user-event'
 import { JestStoreProvider } from '../utils/JestStoreProvider'
-import { Item } from 'src/components/Item';
+import { List } from 'src/components/List';
 
 const userEvent = uE.setup({ advanceTimers: jest.advanceTimersByTime })
 
@@ -30,6 +30,26 @@ describe('Элемент списка задач', () => {
         expect(addButton).toBeDisabled()
     });
     it('нельзя удалять невыполненные задачи', () => {
-        render(<Item />)
+        const fn = jest.fn()
+        const mockItems: Task[] = [{
+            id: "1",
+            header: 'Первая задача',
+            done: false,
+        },
+        {
+            id: "2",
+            header: 'Вторая задача',
+            done: true,
+        }
+        ]
+
+        render(<List items={mockItems} onDelete={fn} onToggle={() => undefined} />)
+
+        const deleteButton1 = screen.getAllByRole('button')[0]
+        const deleteButton2 = screen.getAllByRole('button')[1]
+
+        expect(deleteButton1).toBeDisabled()
+        expect(deleteButton2).not.toBeDisabled()
+
     });
 });
