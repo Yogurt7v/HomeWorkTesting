@@ -30,7 +30,6 @@ describe('Элемент списка задач', () => {
         expect(addButton).toBeDisabled()
     });
     it('нельзя удалять невыполненные задачи', () => {
-        const fn = jest.fn()
         const mockItems: Task[] = [{
             id: "1",
             header: 'Первая задача',
@@ -43,7 +42,7 @@ describe('Элемент списка задач', () => {
         }
         ]
 
-        render(<List items={mockItems} onDelete={fn} onToggle={() => undefined} />)
+        render(<List items={mockItems} onDelete={() => undefined} onToggle={() => undefined} />)
 
         const deleteButton1 = screen.getAllByRole('button')[0]
         const deleteButton2 = screen.getAllByRole('button')[1]
@@ -52,4 +51,11 @@ describe('Элемент списка задач', () => {
         expect(deleteButton2).not.toBeDisabled()
 
     });
+
+    it("проверка снэпшота", () => {
+        const { asFragment } = render(<List items={[]} onDelete={() => { }} onToggle={() => { }} />)
+        const firstRender = asFragment();
+
+        expect(firstRender).toMatchSnapshot()
+    })
 });

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Элемент списка задач проверка снэпшота 1`] = `
+<DocumentFragment>
+  <ul
+    class="task-list tasks"
+  />
+</DocumentFragment>
+`;

@@ -7,8 +7,10 @@ type Props = {
 };
 
 export const List = ({ items, onDelete, onToggle }: Props) => (
+
   <ul className="task-list tasks">
-    {items.map((item) => (
+    {items.length > 10 && <p>Слишком много задач. Показаны только 10 первых</p>}
+    {items.slice(0, 10).map((item) => (
       <Item
         {...item}
         key={item.id}
